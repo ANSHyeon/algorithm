@@ -1,19 +1,14 @@
 class Solution { 
     fun solution(n: Int): Int {
-        var intArr: Array<Long> = Array(n+1){0.toLong()}
-        intArr[1] = 1.toLong()
+        var intArr = Array(n+1){0}
+        intArr[1] = 1
         
-        fun pibonachi(n: Long): Long {
-            if(n==1.toLong()) return 1.toLong()
-            else if(n==0.toLong()) return 0.toLong()
-            else if(intArr[n.toInt()]==0.toLong()){
-                intArr[n.toInt()] = ((pibonachi(n-1)%1234567) + pibonachi(n-2)%1234567)%1234567
-                return intArr[n.toInt()]
-            }
-            else return (intArr[n.toInt()-2] + intArr[n.toInt()-1])%1234567
+        for(i in 2..n){
+            intArr[i] = (intArr[i-1] + intArr[i-2])%1234567
         }
-        var answer = pibonachi(n.toLong())
-        return answer.toInt()
+       
+        var answer = intArr[n]
+        return answer
         
         
         
